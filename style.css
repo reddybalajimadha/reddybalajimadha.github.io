@@ -37,7 +37,7 @@ html{
     margin-top: 10px;
     margin-left: auto; 
 margin-right: 0
-
+    
   }
 
 /* all similar content styling codes */
@@ -463,7 +463,7 @@ section .title::after{
 }
 .teams .carousel .card:hover{
     background: #2541B2;
-
+    
 }
 .teams .carousel .card .box{
     display: flex;
@@ -490,7 +490,7 @@ section .title::after{
 }
 .teams .carousel .card:hover img{
     border-color: #fff;
-
+    
 }
 .owl-dots{
     text-align: center;
@@ -562,7 +562,7 @@ margin-left: 30px;
 .contact{
     background: url("ryunosuke-kikuno-zE-MrTmjzd4-unsplash.jpg");
     background-size: 1450px 600px;
-
+    
 }
 .contact .title::after{
     content: "Get In Touch";
@@ -579,24 +579,24 @@ margin-left: 30px;
 
 .contact .contact-content{
     margin: 10px 0;
-
+    
     display: flex;
     text-align: justify;
     align-items: center;
 }
 .contact .contact-content .icons{
     align-items: center;
-
+    
 }
 .contact .contact-content .icons .row{
     display: flex;
     flex-wrap: wrap;
     height: 65px;
-
+    
 }
 .contact .contact-content .row .info{
     margin-left: 30px;
-
+    
 }
 .contact .contact-content .row i{
     font-size: 25px;
