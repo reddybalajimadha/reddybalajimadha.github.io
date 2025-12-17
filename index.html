@@ -321,6 +321,28 @@ section .title::after{
     color: #2541B2;
     background: none;
 }
+.about .about-content .right .resume-btn{
+    display: inline-block;
+    background: linear-gradient(145deg, #2541B2, #1a3399);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 30px;
+    margin-top: 20px;
+    border-radius: 30px;
+    border: 2px solid #2541B2;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(37, 65, 178, 0.3);
+}
+.about .about-content .right .resume-btn:hover{
+    color: #fff;
+    background: linear-gradient(145deg, #1a3399, #2541B2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 65, 178, 0.5);
+}
+.about .about-content .right .resume-btn i{
+    margin-right: 8px;
+}
 
 /* services section styling */
 .services, .education, .contact{
@@ -344,35 +366,58 @@ section .title::after{
     content: "Stuff I Know";
 }
 .services .serv-content .card{
-    width: calc(33% - 20px);
-    background: #222;
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
     text-align: center;
-    border-radius: 6px;
-    padding: 35px 25px;
+    border-radius: 15px;
+    padding: 30px 25px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(37, 65, 178, 0.2);
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .services .serv-content .card:hover{
-    background: #2541B2;
+    background: linear-gradient(145deg, #2541B2, #1a3399);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(37, 65, 178, 0.4);
+    border: 1px solid rgba(37, 65, 178, 0.5);
 }
 .services .serv-content .card .box{
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
 }
 .services .serv-content .card:hover .box{
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 .services .serv-content .card i{
     font-size: 50px;
     color: #2541B2;
-    transition: color 0.3s ease;
+    transition: all 0.4s ease;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(37, 65, 178, 0.3);
 }
 .services .serv-content .card:hover i{
     color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    transform: rotateY(360deg);
 }
 .services .serv-content .card .text{
-    font-size: 25px;
-    font-weight: 500;
-    margin: 10px 0 7px 0;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 12px 0 10px 0;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+.services .serv-content .card p{
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ddd;
 }
 
 /* skills section styling */
@@ -388,6 +433,29 @@ section .title::after{
 }
 .skills .title::before{
     width:160px;
+}
+
+/* Skill Cards Hover Effects */
+.skill-card:hover{
+    transform: translateY(-8px);
+    border-color: rgba(37, 65, 178, 0.5) !important;
+    box-shadow: 0 10px 30px rgba(37, 65, 178, 0.4) !important;
+    background: linear-gradient(145deg, #252525, #2a2a2a) !important;
+}
+
+.skills-grid{
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .skills .skills-content .column{
     width: calc(50% - 30px);
@@ -468,6 +536,7 @@ section .title::after{
 .teams{
     background: #111;
     color: #fff;
+    position: relative;
 }
 .teams .title::after{
     color: #888;
@@ -539,12 +608,74 @@ section .title::after{
     background: #2541B2!important;
 }
 
+/* Owl Carousel Navigation Arrows */
+.owl-nav{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 0;
+}
+.owl-nav button{
+    pointer-events: all;
+    background: linear-gradient(145deg, #2541B2, #1a3399)!important;
+    color: #fff!important;
+    width: 60px;
+    height: 120px;
+    border-radius: 0;
+    font-size: 28px;
+    transition: all 0.4s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(37, 65, 178, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.owl-nav button:hover{
+    background: linear-gradient(145deg, #1a3399, #2541B2)!important;
+    color: #fff!important;
+    box-shadow: 0 8px 30px rgba(37, 65, 178, 0.6);
+}
+.owl-nav button.owl-prev{
+    margin-left: 0;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-right: 10px;
+}
+.owl-nav button.owl-prev:hover{
+    padding-right: 15px;
+}
+.owl-nav button.owl-next{
+    margin-right: 0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-left: 10px;
+}
+.owl-nav button.owl-next:hover{
+    padding-left: 15px;
+}
+.teams .carousel{
+    position: relative;
+}
+
 /* education section styling */
 .education .title::after{
     content: "Experimenting with Web Development";
 }
 .education .title::before{
     width:250px;
+}
+.education .education-content .text a:hover{
+    color: #fff !important;
+    text-shadow: 0 0 10px rgba(37, 65, 178, 0.5);
 }
 .education .education-content .left .right{
     width: 45%;
@@ -582,6 +713,13 @@ margin-left: 30px;
 .education .education-content .right .p .list{
     margin-left: 30px;
     }
+
+/* Work Experience Card Hover Effects */
+.education .education-content .column:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(37, 65, 178, 0.4) !important;
+    border-color: rgba(37, 65, 178, 0.6) !important;
+}
 
 /* contact section styling */
 .contact{
@@ -702,9 +840,8 @@ margin-left: 30px;
     .about .about-content .right{
         flex: 100%;
     }
-    .services .serv-content .card{
-        width: calc(50% - 10px);
-        margin-bottom: 20px;
+    .services .serv-content{
+        grid-template-columns: repeat(2, 1fr) !important;
     }
     .skills .skills-content .column,
     .contact .contact-content .column{
@@ -738,8 +875,8 @@ margin-left: 30px;
     .home .home-content a{
         font-size: 20px;
     }
-    .services .serv-content .card{
-        width: 100%;
+    .services .serv-content{
+        grid-template-columns: 1fr !important;
     }
     .education .education-content .text{
         width: 100%;
@@ -790,6 +927,7 @@ margin-left: 30px;
                 <li><a href="#about" class="menu-btn">About</a></li>
                 <li><a href="#services" class="menu-btn">My knowledge</a></li>
                 <li><a href="#skills" class="menu-btn">Skills</a></li>
+                <li><a href="#experience" class="menu-btn">Experience</a></li>
                 <li><a href="#teams" class="menu-btn">Projects</a></li>
                 <li><a href="#contact" class="menu-btn">Contact</a></li>
             </ul>
@@ -811,7 +949,7 @@ margin-left: 30px;
             <div class="home-content">
                 <div class="text-1">Hello, My Name Is</div>
                 <div class="text-2">Reddy Balaji Madha</div>
-                <div class="text-3">And I'm aspiring to be Cloud engineer  <span class="typing"></span></div>
+                <div class="text-3">Software Engineer • Systems & Storage  <span class="typing"></span></div>
                 
                 <div class="social-icons">
                     <a href="https://www.linkedin.com/in/reddy-balaji-madha" target="_blank"> <i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
@@ -831,12 +969,13 @@ margin-left: 30px;
                     <img src="profile.jpeg" alt="">
                 </div>
                 <div class="column right">
-                    <div class="text">Hi, I'm Rddy Balaji Madha</div>
-                    <p>I am a recent graduate from California Lutheran University with a Master’s in Information Technology. With two years of experience as a Systems/storage Administrator, I have a strong background in storage management, network administration, and IT operations. I am now focused on becoming a successful Cloud Engineer. Currently seeking a full-time position to leverage my expertise in storage solutions and cloud technologies while furthering my skills in cloud infrastructure and system architecture
+                    <div class="text">Hi, I'm Reddy Balaji Madha</div>
+                    <p>Software Engineer and System Administrator with enterprise SAN/NAS experience (NetApp ONTAP, Dell EMC) and hands-on EMS interoperability work (FHIR/HL7/NEMSIS). I build secure, multi-tenant services with Elasticsearch, AWS S3, and containerized deployments (Docker). Currently pursuing M.Sc. in Computer Science at Jessup University while working as a Software Developer at Atian.ai (HealthyVibes.ai), where I architect and deliver healthcare data integration solutions.
                     </p>
-                    <br>
-                    <br>
-                               
+                    <a href="Reddy_Balaji_Madha_Resume.pdf" download class="resume-btn">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -845,57 +984,153 @@ margin-left: 30px;
     <section class="services" id="services">
         <div class="max-width">
            <h2 class="title">My Knowledge</h2>
-<div class="serv-content">
-    <!-- IT Administration -->
+<div class="serv-content" style="display: grid; grid-template-columns: repeat(3, 350px); gap: 30px; justify-content: center;">
+    <!-- EMS Interoperability -->
+    <div class="card">
+        <div class="box">
+            <i class="fas fa-heartbeat"></i>
+            <div class="text">Healthcare Data Integration</div>
+            <p>Building NEMSIS FHIR API microservices for EMS data exchange, CAD/911 incident integration, and clinical reporting with multi-tenant architecture.</p>
+        </div>
+    </div>
+    <!-- Backend Development -->
+    <div class="card">
+        <div class="box">
+            <i class="fas fa-code"></i>
+            <div class="text">Backend Development</div>
+            <p>Developing REST APIs with FastAPI and Node.js/Express, implementing webhooks, data validation with Pydantic/jsonschema, and building scalable microservices.</p>
+        </div>
+    </div>
+    <!-- IT Systems & Storage -->
     <div class="card">
         <div class="box">
             <i class="fas fa-server"></i>
-            <div class="text">IT Systems & Storage Management</div>
-            <p>With experience in storage solutions like NetApp and Dell EMC, my expertise includes managing, provisioning, and optimizing IT infrastructure for smooth business operations.</p>
+            <div class="text">Enterprise Storage & Systems</div>
+            <p>Administered SAN/NAS storage (NetApp ONTAP, Dell EMC), managed VMware storage connectivity, and supported Cisco MDS networking infrastructure.</p>
         </div>
     </div>
-    <!-- Cloud Computing -->
+    <!-- Cloud & DevOps -->
     <div class="card">
         <div class="box">
             <i class="fas fa-cloud"></i>
-            <div class="text">Cloud Computing</div>
-            <p>Focused on cloud engineering, my goal is to design scalable and secure cloud solutions, leveraging platforms like Azure and AWS to ensure seamless data storage and computing.</p>
+            <div class="text">Cloud & DevOps</div>
+            <p>Deploying containerized applications with Docker, managing AWS services (S3, EC2, EFS), and implementing CI/CD pipelines with GitHub Actions.</p>
         </div>
     </div>
-    <!-- Open Source Contributions -->
+    <!-- Data Engineering -->
     <div class="card">
         <div class="box">
-            <i class="fas fa-code-branch"></i>
-            <div class="text">Open Source</div>
-            <p>As I grow in the cloud and IT field, I aim to contribute to open-source projects, driving innovation and collaboration within the tech community.</p>
+            <i class="fas fa-database"></i>
+            <div class="text">Data Engineering</div>
+            <p>Working with Elasticsearch, Cassandra, SQLite, PostgreSQL, and building ELT workflows for healthcare data processing and analytics.</p>
+        </div>
+    </div>
+    <!-- Edge Computing -->
+    <div class="card">
+        <div class="box">
+            <i class="fas fa-microchip"></i>
+            <div class="text">Edge Deployments</div>
+            <p>Delivering containerized edge deployments with MediaMTX and AI services, implementing RTSP-to-transcription pipelines with FFmpeg for unstable networks.</p>
         </div>
     </div>
 </div>
 
 
 <!-- skills section start -->
-<section class="skills" id="skills" style="background-color: #000; padding: 50px 0;">
+<section class="skills" id="skills" style="background-color: #111; padding: 80px 0;">
     <div class="max-width">
         <h2 class="title" style="color: #fff;">My Skills</h2>
 
         <!-- Skills & Experience Description -->
-        <div class="skills-content" style="margin-bottom: 30px;">
-            <div class="text" style="font-size: 1.7em; font-weight: bold; color: #fff;">Skills & Experiences</div>
-            <p style="margin-bottom: 20px; color: #ddd;">I am a Cloud / Storage Engineer with extensive experience in IT operations, cloud infrastructure, and storage systems administration. Below are my key technical skills:</p>
+        <div class="skills-content" style="margin-bottom: 50px; text-align: center; padding: 0 20px;">
+            <div class="text" style="font-size: 2.2em; font-weight: 700; color: #fff; margin-bottom: 25px; letter-spacing: 1.5px; text-align: center;">Technical Expertise</div>
+            <p style="margin: 0 auto; color: #bbb; max-width: 900px; line-height: 2; font-size: 1.1em; text-align: center;">Software Engineer specializing in healthcare data integration, backend development, and enterprise systems. Experienced in building multi-tenant microservices, EMS interoperability solutions, and managing enterprise storage infrastructure.</p>
         </div>
 
-        <!-- Technical Skills List -->
-        <div class="skills-list" style="background-color: #222; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);">
-            <ul style="list-style-type: none; padding: 0; color: #eee;">
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">💻</span> Programming Languages:</strong> Python, Java, Shell scripting, SQL</li>
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">💽</span> Storage Administration:</strong> NetApp ONTAP, EMC, Dell EMC, SnapMirror</li>
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">🌐</span> Network Administration:</strong> Cisco MDS SAN switch, Cisco UCS Blade Servers, Cisco routers and switches</li>
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">🖥️</span> Operating Systems:</strong> Linux (Red Hat, CentOS), Windows Server, macOS, Windows</li>
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">⚙️</span> IT Operations:</strong> NAS & SAN storage management, VMware vSphere, Hyper-V, disaster recovery</li>
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">🔒</span> Network & Security Tools:</strong> Nmap, Wireshark, Kali Linux, SMB, Cisco ASA</li>
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">📊</span> Productivity Tools:</strong> MS Office (Word, Excel, PowerPoint), MS Visio</li>
-                <li style="margin-bottom: 15px;"><strong><span style="font-size: 2em;">📂</span> Version Control:</strong> Git</li>
-            </ul>
+        <!-- Technical Skills Grid -->
+        <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px;">
+
+            <!-- Languages Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">💻</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Languages</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">Java, Python, SQL, Bash, TypeScript, Go, R</p>
+            </div>
+
+            <!-- Backend Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">🔧</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Backend</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">FastAPI, Node.js/Express, REST APIs, Webhooks, Pydantic/jsonschema, HTTP, JSON, XML, lxml, HL7, MLLP</p>
+            </div>
+
+            <!-- Datastores Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">🗄️</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Datastores</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">Elasticsearch, Cassandra, SQLite, MySQL/PostgreSQL, Sequelize ORM, Redis</p>
+            </div>
+
+            <!-- Cloud/DevOps Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">☁️</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Cloud/DevOps</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">AWS (S3, EC2, EFS), Azure, Docker, Docker Compose, GitHub Actions, Kubernetes, Linux, CI/CD</p>
+            </div>
+
+            <!-- Storage/Network Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">💽</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Storage/Network</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">NetApp ONTAP, Dell EMC, SAN/NAS, Cisco MDS, VMware, Wireshark</p>
+            </div>
+
+            <!-- Healthcare Standards Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">🏥</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Healthcare Standards</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">FHIR R4, HL7 v2, NEMSIS, HIPAA/HITRUST compliance</p>
+            </div>
+
+            <!-- Systems & Patterns Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">🔍</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Systems & Patterns</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">Microservices, Multi-tenant architecture, Outbox/worker patterns, Retries/backoff, Tenacity, Idempotency</p>
+            </div>
+
+            <!-- Observability Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">📊</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Observability</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">Structured logging, Health checks, Integration tests, Test data generators</p>
+            </div>
+
+            <!-- Data Analytics Card -->
+            <div class="skill-card" style="background: linear-gradient(145deg, #1a1a1a, #252525); padding: 30px; border-radius: 15px; border: 1px solid rgba(37, 65, 178, 0.2); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5em; margin-right: 15px;">📈</span>
+                    <h3 style="color: #2541B2; font-size: 1.3em; margin: 0;">Data Analytics</h3>
+                </div>
+                <p style="color: #ddd; line-height: 1.8; margin: 0;">Statistical analysis, Excel, R, Data visualization, EDA techniques</p>
+            </div>
+
         </div>
     </div>
 </section>
@@ -903,7 +1138,94 @@ margin-left: 30px;
 
 
 
-  
+<!-- Experience section start -->
+<section class="education" id="experience" style="background-color: #111; padding: 80px 0;">
+    <div class="max-width">
+        <h2 class="title" style="color: #fff;">Work Experience</h2>
+        <div class="education-content" style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
+
+            <!-- HealthyVibes.ai Experience -->
+            <div class="column left" style="background: linear-gradient(145deg, #1a1a1a, #252525); border-radius: 20px; padding: 40px; border: 1px solid rgba(37, 65, 178, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transition: all 0.4s ease; width: calc(50% - 15px); min-width: 450px;">
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <i class="fas fa-briefcase" style="font-size: 35px; color: #2541B2; margin-right: 15px;"></i>
+                    <div>
+                        <div class="text" style="font-size: 22px; font-weight: 700; margin-bottom: 5px;">
+                            <a href="https://atian.ai/" target="_blank" style="color: #2541B2; text-decoration: none; transition: all 0.3s ease;">Atian.ai (HealthyVibes.ai)</a>
+                        </div>
+                        <div style="color: #999; font-size: 16px; font-weight: 500;">Software Developer</div>
+                    </div>
+                </div>
+                <p class="p" style="color: #888; margin-bottom: 25px; font-size: 14px; border-left: 3px solid #2541B2; padding-left: 15px;">
+                    <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Dec 2024 - Present | Remote
+                </p>
+
+                <div style="margin-bottom: 25px;">
+                    <p class="p" style="color: #2541B2; font-weight: 600; font-size: 16px; margin-bottom: 12px;">
+                        <i class="fas fa-server" style="margin-right: 8px;"></i>EMS Interoperability (NEMSIS/FHIR):
+                    </p>
+                    <ul class="list" style="color: #ddd; margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
+                        <li style="margin-bottom: 8px;">Built NEMSIS FHIR API microservice (Node.js/Express) for EMS data exchange</li>
+                        <li style="margin-bottom: 8px;">Developed SFTP and HTTP API exporters with validation and error handling</li>
+                        <li style="margin-bottom: 8px;">Modeled core NEMSIS entities in Sequelize (Incident, Patient, Vitals, Medications)</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <p class="p" style="color: #2541B2; font-weight: 600; font-size: 16px; margin-bottom: 12px;">
+                        <i class="fas fa-search" style="margin-right: 8px;"></i>CAD/911 Integration & Multi-tenant Search:
+                    </p>
+                    <ul class="list" style="color: #ddd; margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
+                        <li style="margin-bottom: 8px;">Implemented CAD webhook ingestion with Elasticsearch multi-tenant management</li>
+                        <li style="margin-bottom: 8px;">Built patient resolution workflows (match/link/placeholder)</li>
+                        <li style="margin-bottom: 8px;">Integrated CAD data into pre-hospital reports for improved correlation</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="p" style="color: #2541B2; font-weight: 600; font-size: 16px; margin-bottom: 12px;">
+                        <i class="fas fa-file-medical" style="margin-right: 8px;"></i>Clinical Reporting & Edge Deployments:
+                    </p>
+                    <ul class="list" style="color: #ddd; margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
+                        <li style="margin-bottom: 8px;">Implemented PDF merge for ECG/CHART/reports with AWS S3 integration</li>
+                        <li style="margin-bottom: 8px;">Delivered containerized edge deployments (MediaMTX + AI services)</li>
+                        <li style="margin-bottom: 8px;">Built RTSP-to-transcription pipeline with FFmpeg for unstable networks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TCS Experience -->
+            <div class="column right" style="background: linear-gradient(145deg, #1a1a1a, #252525); border-radius: 20px; padding: 40px; border: 1px solid rgba(37, 65, 178, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transition: all 0.4s ease; width: calc(50% - 15px); min-width: 450px;">
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <i class="fas fa-building" style="font-size: 35px; color: #2541B2; margin-right: 15px;"></i>
+                    <div>
+                        <div class="text" style="font-size: 22px; font-weight: 700; margin-bottom: 5px;">
+                            <a href="https://www.tatacommunications.com/strategic-alliances/cisco-alliance" target="_blank" style="color: #2541B2; text-decoration: none; transition: all 0.3s ease;">Tata Consultancy Services (TCS)</a>
+                        </div>
+                        <div style="color: #999; font-size: 16px; font-weight: 500;">System Administrator</div>
+                    </div>
+                </div>
+                <p class="p" style="color: #888; margin-bottom: 25px; font-size: 14px; border-left: 3px solid #2541B2; padding-left: 15px;">
+                    <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Feb 2020 - Aug 2022 | Bangalore, India
+                </p>
+
+                <div>
+                    <p class="p" style="color: #2541B2; font-weight: 600; font-size: 16px; margin-bottom: 12px;">
+                        <i class="fas fa-hdd" style="margin-right: 8px;"></i>Enterprise Storage Operations:
+                    </p>
+                    <ul class="list" style="color: #ddd; margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
+                        <li style="margin-bottom: 8px;">Administered SAN/NAS storage (NetApp ONTAP, Dell EMC) including provisioning, monitoring, and capacity planning</li>
+                        <li style="margin-bottom: 8px;">Led annual home-directory migration project coordinating ~100 requests to minimize downtime</li>
+                        <li style="margin-bottom: 8px;">Supported Cisco MDS and VMware storage connectivity</li>
+                        <li style="margin-bottom: 8px;">Troubleshot network/storage issues using Wireshark and runbooks</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
 <!-- Projects section start -->
 <section class="teams" id="teams">
     <div class="max-width">
@@ -965,8 +1287,38 @@ margin-left: 30px;
                     <a href="#" target="_blank">
                         <i class="fas fa-chart-line fa-5x"></i>
                     </a>
-                    <div class="text">Audi Car CO2 Emissions Study</div>
-                    <p>Conducted statistical analysis on CO2 emissions of Audi cars using Excel, based on UK government data.</p>
+                    <div class="text">Audi CO2 Emission Statistical Analysis</div>
+                    <p>Performed end-to-end EDA on 128 car models using descriptive statistics and charts (histogram, boxplot, ogive), identifying outliers and emission patterns across engine types.</p>
+                </div>
+            </div>
+            <!-- Project 7: Patient Demographics & Utilisation Analytics -->
+            <div class="card">
+                <div class="box">
+                    <a href="#" target="_blank">
+                        <i class="fas fa-users fa-5x"></i>
+                    </a>
+                    <div class="text">Patient Demographics & Utilisation Analytics</div>
+                    <p>Cleaned and analyzed a 26k+ record dataset using Excel pivot tables; identified key demographic, cost, and program usage trends, and built visual dashboards.</p>
+                </div>
+            </div>
+            <!-- Project 8: SQL Data Modeling & Schema Design -->
+            <div class="card">
+                <div class="box">
+                    <a href="#" target="_blank">
+                        <i class="fas fa-project-diagram fa-5x"></i>
+                    </a>
+                    <div class="text">SQL Data Modeling & Schema Design</div>
+                    <p>Designed ERDs, normalized relational schemas, and implemented SQL queries (joins, subqueries, aggregates) across multiple business case studies demonstrating strong data governance.</p>
+                </div>
+            </div>
+            <!-- Project 9: Organizational Performance Dashboard -->
+            <div class="card">
+                <div class="box">
+                    <a href="#" target="_blank">
+                        <i class="fas fa-chart-bar fa-5x"></i>
+                    </a>
+                    <div class="text">Organizational Performance Dashboard</div>
+                    <p>Built a multidimensional analytics dashboard with star-schema design and OLAP techniques to uncover trends in regional performance, revenue patterns, and year-over-year activity.</p>
                 </div>
             </div>
         </div>
@@ -993,18 +1345,18 @@ margin-left: 30px;
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="info">
                             <div class="head">Address</div>
-                            <div class="sub-title">Thousand Oks, california, USA</div>
+                            <div class="sub-title">San Jose, California, USA</div>
                         </div>
                     </div>
                     <div class="row">
                         <i class="fas fa-envelope"></i>
                         <div class="info">
                             <div class="head">Email</div>
-                            <div class="sub-title">rmadha@callutheran.edu</div>
+                            <div class="sub-title">reddybalajimadha@gmail.com</div>
                         </div>
                         <div class="info">
-                            <div class="head">Contact Number: </div>
-                            <div class="sub-title">+1 8057322532</div>
+                            <div class="head">Contact Number</div>
+                            <div class="sub-title">805-732-2532</div>
                         </div>
                     </div>
                 </div>
@@ -1068,14 +1420,31 @@ margin-left: 30px;
         loop: true,
         autoplayTimeOut: 2000,
         autoplayHoverPause: true,
+        nav: true,
+        navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
         responsive: {
             0:{
                 items: 1,
-                nav: false
+                nav: true
             },
-         
+
         }
     });
+});
+
+// Equal height boxes for My Knowledge section
+function equalizeServiceBoxes() {
+    const boxes = document.querySelectorAll('.services .card .box');
+    if (!boxes.length) return;
+    boxes.forEach(b => b.style.height = 'auto');              // reset
+    const max = Math.max(...Array.from(boxes, b => b.offsetHeight));
+    boxes.forEach(b => b.style.height = max + 'px');          // set equal
+}
+
+window.addEventListener('load', equalizeServiceBoxes);
+window.addEventListener('resize', () => {
+    clearTimeout(window._ehTimer);
+    window._ehTimer = setTimeout(equalizeServiceBoxes, 150);
 });
     </script>
 </body>
