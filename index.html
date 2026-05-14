@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reddy Balaji Madha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://code.jquery.com" crossorigin>
+    <link rel="preload" as="image" href="LRM_EXPORT_339882493116538_20191026_124245432-01.jpeg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
-
 *{
     margin: 0;
     padding: 0;
@@ -134,6 +134,10 @@ margin-right: 0
 section{
     padding: 100px 0;
 }
+.about, .services, .skills, .education, #featured-projects, .teams, .contact{
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+}
 .max-width{
     max-width: 1300px;
     padding: 0 80px;
@@ -238,17 +242,36 @@ section .title::after{
 }
 .navbar .menu li a{
     display: block;
+    position: relative;
     color: #fff;
     font-size: 18px;
     font-weight: 500;
     margin-left: 25px;
     transition: color 0.3s ease;
 }
+.navbar .menu li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: rgba(37,65,178,0.9);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s ease;
+}
 .navbar .menu li a:hover{
     color: #2541B2;
 }
+.navbar .menu li a:hover::after{
+    transform: scaleX(1);
+}
 .navbar.sticky .menu li a:hover{
     color: #fff;
+}
+.navbar.sticky .menu li a::after{
+    background: rgba(255,255,255,0.9);
 }
 
 /* menu btn styling */
@@ -449,6 +472,25 @@ section .title::after{
 .about .about-content .right .resume-btn i{
     margin-right: 8px;
 }
+.about .about-content .right .resume-links{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+.about .about-content .right .resume-links .resume-btn{
+    margin-top: 0;
+    font-size: 16px;
+    padding: 12px 24px;
+}
+.about .about-content .right .resume-links .resume-btn.secondary{
+    background: rgba(37,65,178,0.2);
+    border-color: rgba(37,65,178,0.5);
+}
+.about .about-content .right .resume-links .resume-btn.secondary:hover{
+    background: rgba(37,65,178,0.35);
+    border-color: rgba(37,65,178,0.7);
+}
 
 /* services section styling */
 .services, .education{
@@ -533,6 +575,16 @@ section .title::after{
     transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .blob { animation: none !important; }
+    .reveal, .reveal.visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
 /* ── Global icon & text overrides ── */
 .card i, .skill-card i, .contact-item i,
 .serv-content .card i, .services .card i {
@@ -548,7 +600,6 @@ section .title::after{
 /* ── Universal Glass Card ── */
 .skill-card,
 .services .serv-content .card,
-.teams .carousel .card,
 .education .education-content .column {
     background: rgba(255,255,255,0.06) !important;
     backdrop-filter: blur(18px) !important;
@@ -559,7 +610,6 @@ section .title::after{
 }
 .skill-card:hover,
 .services .serv-content .card:hover,
-.teams .carousel .card:hover,
 .education .education-content .column:hover {
     transform: translateY(-8px) !important;
     background: rgba(37,65,178,0.2) !important;
@@ -671,6 +721,11 @@ section .title::after{
     width: 220px;
 }
 /* Equal-height carousel cards */
+.teams .carousel .owl-stage-outer {
+    /* Keep hover lift from getting clipped at the top of the carousel viewport */
+    padding-top: 8px;
+    margin-top: -8px;
+}
 .teams .carousel .owl-stage {
     display: flex;
     align-items: stretch;
@@ -687,31 +742,46 @@ section .title::after{
     border-radius: 18px;
     padding: 40px 25px 35px;
     text-align: center;
-    transition: all 0.35s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease;
     border: 1px solid rgba(37,65,178,0.22);
     box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+    isolation: isolate;
     width: 100%;
     overflow: visible;
 }
+.teams .carousel .card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(140deg, rgba(255,255,255,0.14), rgba(255,255,255,0) 44%);
+    opacity: 0.42;
+    pointer-events: none;
+    z-index: 0;
+}
 .teams .carousel .card:hover{
-    background: rgba(37,65,178,0.18);
-    border-color: rgba(37,65,178,0.55);
-    box-shadow: 0 20px 50px rgba(37,65,178,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
-    transform: translateY(-6px);
+    background: rgba(255,255,255,0.075);
+    border-color: rgba(120,145,255,0.42);
+    box-shadow: 0 16px 34px rgba(0,0,0,0.46), 0 0 0 1px rgba(120,145,255,0.22), inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: translateY(-4px);
 }
 .teams .carousel .card .box {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 .teams .carousel .card i {
     margin-bottom: 18px;
     display: block;
+    transition: transform 0.25s ease, text-shadow 0.25s ease, opacity 0.25s ease;
 }
 .teams .carousel .card .text {
     font-size: 18px;
@@ -729,10 +799,14 @@ section .title::after{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: none;
 }
 .teams .carousel .card:hover .box{
-    transform: scale(1.05);
+    transform: none;
+}
+.teams .carousel .card:hover i{
+    transform: translateY(-2px);
+    text-shadow: 0 0 14px rgba(255,255,255,0.25);
 }
 .teams .carousel .card .text{
     font-size: 25px;
@@ -970,6 +1044,29 @@ margin-left: 30px;
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(37,65,178,0.5);
 }
+.contact-resume-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+.contact-resume-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+.contact-resume-links a:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+}
 
 
 /* responsive media query start */
@@ -1123,6 +1220,7 @@ margin-left: 30px;
     .contact-grid { grid-template-columns: 1fr !important; }
     .contact-social { gap: 12px; }
     .contact-social a { width: 42px; height: 42px; font-size: 16px; }
+    .contact-resume-links a { font-size: 13px; padding: 9px 14px; }
 }
 
 /* ── Small mobile (max 480px) ── */
@@ -1196,12 +1294,12 @@ margin-left: 30px;
             <div class="home-content">
                 <div class="text-1">Hello, My Name Is</div>
                 <div class="text-2">Reddy Balaji Madha</div>
-                <div class="text-3">Backend Developer · Edge AI · Distributed Systems  <span class="typing"></span></div>
+                <div class="text-3">Software Developer · Healthcare AI · Edge Systems</div>
                 
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/reddy-balaji-madha" target="_blank"> <i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                    <a href="https://github.com/reddybalajimadha" target="_blank"> <i class="fab fa-github" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/reddy_balaji_/" target="_blank"> <i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/reddy-balaji-madha" target="_blank" rel="noopener noreferrer"> <i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://github.com/reddybalajimadha" target="_blank" rel="noopener noreferrer"> <i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/reddy_balaji_/" target="_blank" rel="noopener noreferrer"> <i class="fab fa-instagram" aria-hidden="true"></i></a>
                 </div>
             </div>
           </div>
@@ -1213,15 +1311,19 @@ margin-left: 30px;
             <h2 class="title">About Me</h2>
             <div class="about-content">
                 <div class="column left">
-                    <img src="profile.jpeg" alt="Reddy Balaji Madha - Backend Software Developer">
+                    <img src="profile.jpeg" alt="Reddy Balaji Madha - Backend Software Developer" width="350" height="350" loading="lazy" decoding="async">
                 </div>
                 <div class="column right">
                     <div class="text">Hi, I'm Reddy Balaji Madha</div>
-                    <p>Backend software developer with 4+ years of experience building production APIs, AI-powered clinical data pipelines, automation tooling, and full-stack analytics platforms for EMS and healthcare environments. At Atian.ai, I architect end-to-end systems in Java/Spring Boot and Python/FastAPI — spanning NEMSIS 3.5.1 SOAP pipelines, AI-assisted PCR generation, edge AI deployment on ARM64 IoT devices, Snowflake-backed operational dashboards, and real-time Elasticsearch infrastructure. Strong foundation in infrastructure automation, reliability engineering, and production operations in regulated environments. Pursuing M.S. in Computer Science at Jessup University.
-                    </p>
-                    <a href="Reddy_Balaji_Madha_Resume.pdf" download class="resume-btn">
-                        <i class="fas fa-download"></i> Download Resume
-                    </a>
+                    <p>Software developer with 4+ years of experience building healthcare AI systems, edge inference pipelines, and production backend services. At Atian.ai, I build NEMSIS 3.5.1 XML submission pipelines in Java/Spring Boot, AI guardrails for GPT-driven clinical extraction, browser automation for ESO and Zoll ePCR workflows, and EMS analytics systems using Flask, Chart.js, and Leaflet. I also deploy containerized edge stacks on Cradlepoint routers and ambulance Linux systems with reverse-SSH fleet management and security hardening. Pursuing an M.S. in Computer Science at Jessup University.</p>
+                    <div class="resume-links">
+                        <a href="Reddy_Balaji_Resume_Healthcare.pdf" download class="resume-btn">
+                            <i class="fas fa-download"></i> Healthcare Resume
+                        </a>
+                        <a href="Reddy_Balaji_Resume_EdgeAI.pdf" download class="resume-btn secondary">
+                            <i class="fas fa-download"></i> Edge AI Resume
+                        </a>
+                    </div>
 
                 </div>
             </div>
@@ -1237,7 +1339,7 @@ margin-left: 30px;
         <div class="box">
             <i class="fas fa-microchip"></i>
             <div class="text">Edge AI & IoT</div>
-            <p>Deploying Whisper.cpp, YOLOv8, and MedGemma 4B on ARM64 (Ericsson Cradlepoint R1900) for real-time EMS documentation without cloud dependency.</p>
+            <p>Deploying MediaMTX, faster-whisper, YOLOv8n, and MedGemma 4B on edge devices (Ericsson Cradlepoint R1900 and ambulance Linux PCs) for offline-first EMS workflows.</p>
         </div>
     </div>
     <!-- Backend Development -->
@@ -1245,7 +1347,7 @@ margin-left: 30px;
         <div class="box">
             <i class="fas fa-code"></i>
             <div class="text">Backend Development</div>
-            <p>Building production APIs and microservices in Java/Spring Boot and Python/FastAPI with JWT, SOAP, XML/JAXB, schema validation, and async workflows.</p>
+            <p>Building production APIs and microservices in Java/Spring Boot and Python/Flask with SOAP/XML-JAXB processing, JWT auth, schema validation, and browser automation using Playwright.</p>
         </div>
     </div>
     <!-- Healthcare & AI -->
@@ -1261,7 +1363,7 @@ margin-left: 30px;
         <div class="box">
             <i class="fas fa-chart-line"></i>
             <div class="text">Data & Analytics</div>
-            <p>Designing Snowflake-backed EMS operations dashboards with Snowpipe ingestion, KPI pipelines, and multi-tenant analytics for live ambulance districts.</p>
+            <p>Building EMS dashboards with Flask, Chart.js, and Leaflet covering 24 organization-level KPIs across operations, clinical quality, finance, and compliance.</p>
         </div>
     </div>
     <!-- NLP & Audit -->
@@ -1269,7 +1371,7 @@ margin-left: 30px;
         <div class="box">
             <i class="fas fa-brain"></i>
             <div class="text">NLP & Audit Pipelines</div>
-            <p>Semantic similarity scoring with Sentence Transformers, confidence-based audit gating, hallucination detection, and automated clinical QA artifact generation.</p>
+            <p>Using Sentence Transformers (e5-large-v2, MiniLM) for semantic consistency checks, hallucination detection, and confidence-based OK/WARN/ALERT audit gating.</p>
         </div>
     </div>
     <!-- Cloud & Infra -->
@@ -1277,7 +1379,7 @@ margin-left: 30px;
         <div class="box">
             <i class="fas fa-cloud"></i>
             <div class="text">Cloud & Infrastructure</div>
-            <p>AWS (EC2, EKS, ECS), Docker buildx/QEMU cross-compilation, Kubernetes (kustomize), GitHub Actions CI/CD, and Linux production operations.</p>
+            <p>AWS (EC2, EKS, ECS Fargate), Docker, Kubernetes, GitHub Actions CI/CD, nginx, and Linux production operations with secure remote fleet access.</p>
         </div>
     </div>
 </div>
@@ -1292,7 +1394,7 @@ margin-left: 30px;
         <!-- Skills & Experience Description -->
         <div style="margin-bottom: 50px; text-align: center; padding: 0 20px;">
             <div class="text" style="font-size: 2.2em; font-weight: 700; color: #fff; margin-bottom: 25px; letter-spacing: 1.5px; text-align: center;">Technical Expertise</div>
-            <p style="margin: 0 auto; color: #bbb; max-width: 900px; line-height: 2; font-size: 1.1em; text-align: center;">Backend developer specializing in AI-powered clinical pipelines, edge AI deployment, and distributed EMS data systems. Experienced in Java/Spring Boot and Python/FastAPI production systems, NEMSIS 3.5.1 SOAP integration, and Snowflake analytics platforms.</p>
+            <p style="margin: 0 auto; color: #bbb; max-width: 900px; line-height: 2; font-size: 1.1em; text-align: center;">Software developer focused on healthcare AI pipelines, edge AI deployment, and resilient EMS infrastructure. Experienced in Java/Spring Boot and Python systems, NEMSIS 3.5.1 workflows, and production-grade clinical data validation.</p>
         </div>
 
         <!-- Technical Skills Grid -->
@@ -1302,56 +1404,56 @@ margin-left: 30px;
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
                 <i class="fas fa-terminal" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
                 <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">Languages</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Java, Python, SQL, Bash, JavaScript</p>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Java, Python, Go, SQL, Bash, JavaScript, TypeScript</p>
             </div>
 
             <!-- Backend Card -->
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
                 <i class="fas fa-code" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
                 <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">Backend</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Spring Boot, FastAPI, REST APIs, JWT, JSON, XML, JAXB, SOAP, schema validation</p>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Spring Boot, Flask, REST APIs, SOAP, JAXB, JWT, Playwright, schema validation</p>
             </div>
 
             <!-- Healthcare & AI Card -->
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
                 <i class="fas fa-heartbeat" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
                 <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">Healthcare & AI</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">NEMSIS 3.5.1, HL7 v2, FHIR, ICD-10/RxNorm/SNOMED CT, GPT integration, Whisper ASR, MedGemma</p>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">NEMSIS 3.5.1, HL7 v2, FHIR, ICD-10/RxNorm/SNOMED CT, NIH RxNav, GPT integration</p>
             </div>
 
             <!-- Edge AI & IoT Card -->
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
                 <i class="fas fa-microchip" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
                 <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">Edge AI & IoT</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Whisper.cpp, YOLOv8, ONNX Runtime, MedGemma 4B, ARM64 deployment, Ericsson Cradlepoint R1900, Docker buildx/QEMU</p>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">faster-whisper, YOLOv8, ONNX Runtime, MedGemma 4B, systemd, RTSP/MediaMTX, autossh, edge Linux</p>
             </div>
 
             <!-- Data & Analytics Card -->
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
                 <i class="fas fa-database" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
                 <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">Data & Analytics</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Snowflake, Snowpipe, Elasticsearch, SQL, data modeling, clinical dashboard design</p>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Elasticsearch, PostgreSQL, Cassandra, Redis, SQLite, SQL, data modeling</p>
             </div>
 
             <!-- NLP & Audit Card -->
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
                 <i class="fas fa-brain" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
                 <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">NLP & Audit</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Sentence Transformers, semantic similarity, confidence scoring, audit automation, JSON artifact generation</p>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Sentence Transformers (e5-large-v2, MiniLM), semantic similarity, hallucination detection, confidence gating</p>
             </div>
 
             <!-- Cloud & Infra Card -->
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
                 <i class="fas fa-cloud" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
                 <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">Cloud & Infra</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">AWS (EC2, EKS, ECS), Docker, Kubernetes, GitHub Actions, Linux, CI/CD</p>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">AWS (EC2, EKS, ECS Fargate), Docker, Kubernetes, GitHub Actions, nginx, Linux, CI/CD</p>
             </div>
 
-            <!-- Reliability Card -->
+            <!-- AI Coding Tools Card -->
             <div class="skill-card" style="padding: 30px; border-radius: 18px;">
-                <i class="fas fa-shield-alt" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
-                <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">Reliability</h3>
-                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Structured logging, async workflows, retries/backoff, health checks, integration testing</p>
+                <i class="fas fa-laptop-code" style="font-size: 36px; color: #fff; margin-bottom: 15px; display: block;"></i>
+                <h3 style="color: #fff; font-size: 1.15em; margin: 0 0 12px;">AI Coding Tools</h3>
+                <p style="color: #bbb; line-height: 1.8; margin: 0; font-size: 14px;">Claude Code, Cursor, OpenAI Codex, GitHub Copilot</p>
             </div>
 
         </div>
@@ -1367,60 +1469,59 @@ margin-left: 30px;
         <h2 class="title" style="color: #fff;">Work Experience</h2>
         <div class="education-content" style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
 
-            <!-- HealthyVibes.ai Experience -->
+            <!-- Atian.ai Experience -->
             <div class="column left" style="background: linear-gradient(145deg, #1a1a1a, #252525); border-radius: 20px; padding: 40px; border: 1px solid rgba(37, 65, 178, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transition: all 0.4s ease; width: calc(50% - 15px); min-width: 450px;">
                 <div style="display: flex; align-items: center; margin-bottom: 20px;">
                     <i class="fas fa-briefcase" style="font-size: 35px; color: #fff; margin-right: 15px;"></i>
                     <div>
                         <div class="text" style="font-size: 22px; font-weight: 700; margin-bottom: 5px;">
-                            <a href="https://atian.ai/" target="_blank" style="color: #fff; text-decoration: none; transition: all 0.3s ease;">Atian.ai (HealthyVibes.ai)</a>
+                            <a href="https://atian.ai/" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; transition: all 0.3s ease;">Atian.ai</a>
                         </div>
                         <div style="color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 500;">Software Developer</div>
                     </div>
                 </div>
                 <p class="p" style="color: rgba(255,255,255,0.6); margin-bottom: 25px; font-size: 14px; border-left: 3px solid rgba(255,255,255,0.3); padding-left: 15px;">
-                    <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Dec 2024 - Present | Remote
+                    <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Dec 2024 - Present | Fremont, CA
                 </p>
 
                 <div style="margin-bottom: 25px;">
                     <p class="p" style="color: rgba(255,255,255,0.75); font-weight: 600; font-size: 16px; margin-bottom: 12px;">
-                        <i class="fas fa-microchip" style="margin-right: 8px;"></i>Edge AI Inference Platform (ARM64 · Whisper.cpp · MedGemma · YOLOv8):
+                        <i class="fas fa-file-medical" style="margin-right: 8px;"></i>NEMSIS 3.5.1 Pipeline & AI Guardrails:
                     </p>
                     <ul class="list" style="color: rgba(255,255,255,0.85); margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
-                        <li style="margin-bottom: 8px;">Deployed edge AI on Ericsson R1900 (ARM64, 4GB RAM) — Whisper.cpp at 14s/30s audio, YOLOv8 at 750ms via ONNX Runtime</li>
-                        <li style="margin-bottom: 8px;">Built automated encounter pipeline: YOLO triggers start/stop, Whisper transcribes, MedGemma 4B generates SOAP notes and PCR reports across 17-task NLP pipeline</li>
-                        <li style="margin-bottom: 8px;">Cross-compiled Docker containers for ARM64 using buildx/QEMU; stress-tested 1,015 transcriptions at 103/hour with zero crashes</li>
+                        <li style="margin-bottom: 8px;">Built Java/Spring Boot NEMSIS 3.5.1 XML submission pipeline with ICD-10, RxNorm, and SNOMED CT mapping, catching 9 wrong RxNorm + 11 wrong SNOMED codes before production EHR</li>
+                        <li style="margin-bottom: 8px;">Built GPT-5.2 extraction guardrails with field-level code-domain validation, NEMSIS-prefix rejection, and NIH RxNav token-overlap checks plus a golden-test framework (21 assertions)</li>
                     </ul>
                 </div>
 
                 <div style="margin-bottom: 25px;">
                     <p class="p" style="color: rgba(255,255,255,0.75); font-weight: 600; font-size: 16px; margin-bottom: 12px;">
-                        <i class="fas fa-chart-bar" style="margin-right: 8px;"></i>EMS Intelligence Analytics Dashboard (Snowflake · FastAPI):
+                        <i class="fas fa-laptop-code" style="margin-right: 8px;"></i>Browser Automation & Analytics:
                     </p>
                     <ul class="list" style="color: rgba(255,255,255,0.85); margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
-                        <li style="margin-bottom: 8px;">Built multi-tenant 'First Mile Intelligence Analytics' platform for live ambulance districts — response times, dispatch lags, fleet GPS, billing revenue, and AI documentation scoring</li>
-                        <li style="margin-bottom: 8px;">Designed full Snowpipe ingestion pipeline into Snowflake powering real-time KPI dashboards across EMS operations, clinical intelligence, and revenue analytics</li>
+                        <li style="margin-bottom: 8px;">Built Playwright + noVNC + Docker prototype to auto-fill ePCR data into ESO and Zoll UIs with YAML-config adapters scaling across 10+ vendor sections</li>
+                        <li style="margin-bottom: 8px;">Built EMS analytics dashboard (Flask + Chart.js + Leaflet) with 24 organization-level KPIs across operational, clinical, financial, and compliance domains</li>
+                        <li style="margin-bottom: 8px;">Deployed dashboard to EC2 behind nginx and Let's Encrypt TLS</li>
                     </ul>
                 </div>
 
                 <div style="margin-bottom: 25px;">
                     <p class="p" style="color: rgba(255,255,255,0.75); font-weight: 600; font-size: 16px; margin-bottom: 12px;">
-                        <i class="fas fa-file-medical" style="margin-right: 8px;"></i>NEMSIS 3.5.1 AI-Powered EMS Submission Pipeline (Java · Spring Boot · GPT):
+                        <i class="fas fa-microchip" style="margin-right: 8px;"></i>Edge AI & Fleet Infrastructure:
                     </p>
                     <ul class="list" style="color: rgba(255,255,255,0.85); margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
-                        <li style="margin-bottom: 8px;">Built end-to-end NEMSIS 3.5.1 XML pipeline: ASR → GPT PCR extraction → ICD-10/RxNorm/SNOMED mapping → XSD-compliant SOAP submission to state and vendor endpoints</li>
-                        <li style="margin-bottom: 8px;">Reduced vendor rejection rate via dynamic empty-section suppression and two-pass AI prompt engineering; deployed on Kubernetes (3-replica)</li>
+                        <li style="margin-bottom: 8px;">Architected containerized edge pipeline (MediaMTX, YOLOv8n, Whisper, MedGemma 4B) on Ericsson Cradlepoint R1900 routers with 1,015 transcriptions over 10 hours and zero crashes</li>
+                        <li style="margin-bottom: 8px;">Deployed 7-service streaming stack on ambulance Linux PCs: Go capture binaries, faster-whisper STT, RTSP/MediaMTX broker, reverse-SSH fleet management, and Flask device registration</li>
                     </ul>
                 </div>
 
                 <div>
                     <p class="p" style="color: rgba(255,255,255,0.75); font-weight: 600; font-size: 16px; margin-bottom: 12px;">
-                        <i class="fas fa-brain" style="margin-right: 8px;"></i>Clinical Audit, QR Handoff & Infrastructure:
+                        <i class="fas fa-shield-alt" style="margin-right: 8px;"></i>Security & Quality:
                     </p>
                     <ul class="list" style="color: rgba(255,255,255,0.85); margin-bottom: 0; margin-left: 30px; line-height: 1.8;">
-                        <li style="margin-bottom: 8px;">Built Python audit pipeline with Sentence Transformers for confidence-scored consistency checks between EMS transcripts and clinical reports</li>
-                        <li style="margin-bottom: 8px;">Implemented QR-based JWT clinical handoff system — zero-login ED patient access with 8-hour token expiry and patient-scoped security</li>
-                        <li style="margin-bottom: 8px;">Diagnosed Cassandra quorum loss and Kubernetes pod networking failures on AWS EKS; managed HL7 v2/FHIR ingestion services</li>
+                        <li style="margin-bottom: 8px;">Led pentest remediation, closing 2 critical RCE vulnerabilities and 3 high-severity findings; hardened SSH key footprint (17 to 6) and rotated leaked credentials</li>
+                        <li style="margin-bottom: 8px;">Built clinical audit pipeline with Sentence Transformers for semantic similarity scoring, hallucination detection, and confidence-based quality gating</li>
                     </ul>
                 </div>
             </div>
@@ -1431,9 +1532,9 @@ margin-left: 30px;
                     <i class="fas fa-building" style="font-size: 35px; color: #fff; margin-right: 15px;"></i>
                     <div>
                         <div class="text" style="font-size: 22px; font-weight: 700; margin-bottom: 5px;">
-                            <a href="https://www.tcs.com" target="_blank" style="color: #fff; text-decoration: none; transition: all 0.3s ease;">Tata Consultancy Services (TCS)</a>
+                            <a href="https://www.tcs.com" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; transition: all 0.3s ease;">Tata Consultancy Services (TCS)</a>
                         </div>
-                        <div style="color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 500;">System Administrator — Automation & Infrastructure</div>
+                        <div style="color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 500;">Systems Engineer — Automation & Infrastructure</div>
                     </div>
                 </div>
                 <p class="p" style="color: rgba(255,255,255,0.6); margin-bottom: 25px; font-size: 14px; border-left: 3px solid rgba(255,255,255,0.3); padding-left: 15px;">
@@ -1486,10 +1587,11 @@ margin-left: 30px;
                     </div>
                 </div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">Snowflake</span>
-                    <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">FastAPI</span>
+                    <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">Flask</span>
+                    <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">Chart.js</span>
+                    <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">Leaflet</span>
                     <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">Python</span>
-                    <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">Multi-tenant</span>
+                    <span style="background: rgba(255,255,255,0.08); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);">AWS EC2</span>
                 </div>
             </div>
 
@@ -1499,7 +1601,7 @@ margin-left: 30px;
                 <!-- Screenshot -->
                 <div style="flex: 1 1 55%; min-width: 300px; position: relative; background: #111; overflow: hidden; max-height: 700px;">
                     <div id="ems-scroll" style="width: 100%; height: 700px; overflow-y: scroll; overflow-x: hidden; scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: #2541B2 #1a1a1a;">
-                        <img src="ems-dashboard.png" alt="EMS Intelligence Analytics Dashboard"
+                        <img src="ems-dashboard.png" alt="EMS Intelligence Analytics Dashboard" loading="lazy" decoding="async" fetchpriority="low"
                              style="width: 100%; display: block;"
                              onerror="this.parentElement.parentElement.innerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;height:700px;color:#555;gap:15px;\'><i class=\'fas fa-image\' style=\'font-size:48px;\'></i><span style=\'font-size:14px;\'>Save ems-dashboard.png to the repo folder to display screenshot</span></div>'">
                     </div>
@@ -1518,29 +1620,29 @@ margin-left: 30px;
                 <div style="flex: 1 1 40%; min-width: 280px; padding: 35px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
                         <p style="color: #bbb; line-height: 1.85; font-size: 14.5px; margin-bottom: 25px;">
-                            Multi-tenant EMS operations platform deployed for live ambulance districts. Surfaces real-time metrics across 6 tabs: EMS Operations, Clinical Intelligence, Service Area Analytics, Site Analytics, Revenue & Billing, and AI Documentation Intelligence.
+                            EMS operations platform covering 24 organization-level KPIs across operational response, clinical quality, finance, and compliance. Built for live ambulance districts with role-based dashboards and secure cloud deployment.
                         </p>
 
                         <div style="display: flex; flex-direction: column; gap: 14px;">
                             <div style="display: flex; align-items: flex-start; gap: 12px;">
                                 <i class="fas fa-database" style="color: #fff; margin-top: 3px; flex-shrink:0;"></i>
-                                <span style="color: #ddd; font-size: 13.5px;">Snowpipe-based continuous ingestion into Snowflake powering response time, dispatch lag, and fleet GPS KPIs</span>
+                                <span style="color: #ddd; font-size: 13.5px;">Flask backend with Chart.js visualizations for response time, dispatch lag, and unit utilization KPIs</span>
                             </div>
                             <div style="display: flex; align-items: flex-start; gap: 12px;">
                                 <i class="fas fa-heartbeat" style="color: #fff; margin-top: 3px; flex-shrink:0;"></i>
-                                <span style="color: #ddd; font-size: 13.5px;">Clinical Intelligence tab: chief complaints, top medications & procedures, case type distribution</span>
+                                <span style="color: #ddd; font-size: 13.5px;">Clinical intelligence views for chief complaints, top medications and procedures, and case type distribution</span>
                             </div>
                             <div style="display: flex; align-items: flex-start; gap: 12px;">
                                 <i class="fas fa-map-marked-alt" style="color: #fff; margin-top: 3px; flex-shrink:0;"></i>
-                                <span style="color: #ddd; font-size: 13.5px;">Service Area Analytics: incident heat maps, live unit GPS positions, patient demographics</span>
+                                <span style="color: #ddd; font-size: 13.5px;">Leaflet-based service area analytics with incident heat maps, live unit GPS views, and demographic drilldowns</span>
                             </div>
                             <div style="display: flex; align-items: flex-start; gap: 12px;">
                                 <i class="fas fa-dollar-sign" style="color: #fff; margin-top: 3px; flex-shrink:0;"></i>
-                                <span style="color: #ddd; font-size: 13.5px;">Revenue & Billing: payor mix, billing performance, estimated revenue by service line</span>
+                                <span style="color: #ddd; font-size: 13.5px;">Financial and compliance KPIs including payor mix, billing performance, and documentation completeness</span>
                             </div>
                             <div style="display: flex; align-items: flex-start; gap: 12px;">
                                 <i class="fas fa-robot" style="color: #fff; margin-top: 3px; flex-shrink:0;"></i>
-                                <span style="color: #ddd; font-size: 13.5px;">AI Doc Intelligence: 89.5% field completion rate, protocol adherence, GCS/trauma capture tracking</span>
+                                <span style="color: #ddd; font-size: 13.5px;">Deployed on AWS EC2 behind nginx with Let's Encrypt TLS for secure production access</span>
                             </div>
                         </div>
                     </div>
@@ -1548,8 +1650,8 @@ margin-left: 30px;
                     <!-- Stats row -->
                     <div style="display: flex; gap: 20px; margin-top: 30px; flex-wrap: wrap;">
                         <div style="text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px 20px; flex: 1; min-width: 80px;">
-                            <div style="color: #fff; font-size: 22px; font-weight: 700;">6</div>
-                            <div style="color: #888; font-size: 11px; margin-top: 3px;">Dashboard Tabs</div>
+                            <div style="color: #fff; font-size: 22px; font-weight: 700;">24</div>
+                            <div style="color: #888; font-size: 11px; margin-top: 3px;">Org-Level KPIs</div>
                         </div>
                         <div style="text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px 20px; flex: 1; min-width: 80px;">
                             <div style="color: #fff; font-size: 22px; font-weight: 700;">Live</div>
@@ -1567,7 +1669,7 @@ margin-left: 30px;
             <div style="background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 16px; border: 1px dashed rgba(37,65,178,0.35); padding: 35px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 220px; gap: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06);">
                 <i class="fas fa-microchip" style="font-size: 40px; color: #fff; opacity: 0.8;"></i>
                 <div style="color: #fff; font-size: 17px; font-weight: 600;">Edge AI Inference Platform</div>
-                <div style="color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.7;">Whisper.cpp · MedGemma 4B · YOLOv8 · ARM64<br>Screenshots coming soon</div>
+                <div style="color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.7;">faster-whisper · MedGemma 4B · YOLOv8n · MediaMTX · ARM64<br>Screenshots coming soon</div>
                 <span style="background: rgba(255,255,255,0.1); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid rgba(255,255,255,0.2);">COMING SOON</span>
             </div>
 
@@ -1593,17 +1695,17 @@ margin-left: 30px;
             <!-- Project: Edge AI Inference Platform -->
             <div class="card">
                 <div class="box">
-                    <a href="https://github.com/reddybalajimadha" target="_blank">
+                    <a href="https://github.com/reddybalajimadha" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-microchip fa-5x"></i>
                     </a>
                     <div class="text">Edge AI Inference Platform</div>
-                    <p>Deployed Whisper.cpp + MedGemma 4B + YOLOv8 on ARM64 Ericsson Cradlepoint R1900 for real-time EMS documentation — 1,015 transcriptions at 103/hour with zero crashes.</p>
+                    <p>Architected an edge AI pipeline with faster-whisper, MedGemma 4B, YOLOv8n, and MediaMTX on Ericsson Cradlepoint R1900 for offline-first EMS documentation, sustaining 1,015 transcriptions in 10 hours with zero crashes.</p>
                 </div>
             </div>
             <!-- Project: NEMSIS 3.5.1 Submission Pipeline -->
             <div class="card">
                 <div class="box">
-                    <a href="https://github.com/reddybalajimadha" target="_blank">
+                    <a href="https://github.com/reddybalajimadha" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-medical fa-5x"></i>
                     </a>
                     <div class="text">NEMSIS 3.5.1 AI Pipeline</div>
@@ -1613,17 +1715,17 @@ margin-left: 30px;
             <!-- Project: EMS Analytics Dashboard -->
             <div class="card">
                 <div class="box">
-                    <a href="https://github.com/reddybalajimadha" target="_blank">
+                    <a href="https://github.com/reddybalajimadha" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-chart-bar fa-5x"></i>
                     </a>
                     <div class="text">EMS Intelligence Dashboard</div>
-                    <p>Multi-tenant Snowflake-backed analytics platform for live ambulance districts — response times, clinical protocol compliance, billing revenue, and AI documentation scoring.</p>
+                    <p>Flask + Chart.js + Leaflet EMS analytics platform with 24 org-level KPIs for live ambulance districts, spanning operations, clinical intelligence, billing, and compliance outcomes.</p>
                 </div>
             </div>
             <!-- Project: Clinical Audit Pipeline -->
             <div class="card">
                 <div class="box">
-                    <a href="https://github.com/reddybalajimadha" target="_blank">
+                    <a href="https://github.com/reddybalajimadha" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-brain fa-5x"></i>
                     </a>
                     <div class="text">Clinical Audit & Scoring</div>
@@ -1633,7 +1735,7 @@ margin-left: 30px;
             <!-- Project 1: Java Encryption Program -->
             <div class="card">
                 <div class="box">
-                    <a href="https://github.com/reddybalajimadha/caesar-monoalphabetic-and-homophonic-ciphers-encryption-in-java" target="_blank">
+                    <a href="https://github.com/reddybalajimadha/caesar-monoalphabetic-and-homophonic-ciphers-encryption-in-java" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-lock fa-5x"></i>
                     </a>
                     <div class="text">Java Encryption Program</div>
@@ -1643,7 +1745,7 @@ margin-left: 30px;
             <!-- Project 2: Chutes and Ladders Game -->
             <div class="card">
                 <div class="box">
-                    <a href="https://github.com/reddybalajimadha/chutes-and-ladders-java" target="_blank">
+                    <a href="https://github.com/reddybalajimadha/chutes-and-ladders-java" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-gamepad fa-5x"></i>
                     </a>
                     <div class="text">Chutes and Ladders Game</div>
@@ -1694,10 +1796,14 @@ margin-left: 30px;
         </div>
 
         <div class="contact-social">
-            <a href="https://www.linkedin.com/in/reddy-balaji-madha" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/reddybalajimadha" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/reddy-balaji-madha" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/reddybalajimadha" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
             <a href="mailto:reddybalajimadha@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="Reddy_Balaji_Madha_Resume.pdf" download title="Resume"><i class="fas fa-file-download"></i></a>
+            <a href="Reddy_Balaji_Resume_Healthcare.pdf" download title="Healthcare Resume"><i class="fas fa-file-download"></i></a>
+        </div>
+        <div class="contact-resume-links">
+            <a href="Reddy_Balaji_Resume_Healthcare.pdf" download><i class="fas fa-file-medical"></i> Healthcare Resume</a>
+            <a href="Reddy_Balaji_Resume_EdgeAI.pdf" download><i class="fas fa-microchip"></i> Edge AI Resume</a>
         </div>
     </div>
 </section>
@@ -1711,12 +1817,15 @@ margin-left: 30px;
     <div class="max-width" style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
         <p style="color: rgba(255,255,255,0.5); font-size: 14px; margin: 0;">Reddy Balaji Madha &copy; 2024 &ndash; 2026. All rights reserved.</p>
         <div style="display: flex; gap: 20px;">
-            <a href="https://www.linkedin.com/in/reddy-balaji-madha" target="_blank" style="color: rgba(255,255,255,0.4); font-size: 16px; transition: color 0.3s;"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/reddybalajimadha" target="_blank" style="color: rgba(255,255,255,0.4); font-size: 16px; transition: color 0.3s;"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/reddy-balaji-madha" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.4); font-size: 16px; transition: color 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/reddybalajimadha" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.4); font-size: 16px; transition: color 0.3s;"><i class="fab fa-github"></i></a>
             <a href="mailto:reddybalajimadha@gmail.com" style="color: rgba(255,255,255,0.4); font-size: 16px; transition: color 0.3s;"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
 </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
     <script>
         $(document).ready(function(){
