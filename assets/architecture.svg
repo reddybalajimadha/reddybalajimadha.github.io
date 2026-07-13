@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="660" viewBox="0 0 1560 660" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="1560" height="660" fill="#0f172a"/>
+  <text x="60" y="64" font-size="30" font-weight="700" fill="#f8fafc">Offline Edge AI Medical Intelligence — Prototype Architecture</text>
+  <text x="60" y="96" font-size="16" fill="#94a3b8">Speech-to-text and medical NLP running entirely on edge hardware in the ambulance — no internet, no cloud</text>
+
+  <!-- Input -->
+  <g>
+    <rect x="60" y="330" width="180" height="90" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="150" y="366" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle">USB Microphone</text>
+    <text x="150" y="390" font-size="12.5" fill="#94a3b8" text-anchor="middle">ALSA capture · RTSP</text>
+  </g>
+
+  <!-- Router box -->
+  <g>
+    <rect x="320" y="180" width="420" height="400" rx="14" fill="#111c30" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="530" y="220" font-size="19" font-weight="700" fill="#60a5fa" text-anchor="middle">ERICSSON R1900 ROUTER — EDGE</text>
+    <text x="530" y="243" font-size="13" fill="#94a3b8" text-anchor="middle">ARM64 · 4 cores · 4 GB RAM · Docker containers</text>
+
+    <rect x="350" y="272" width="360" height="118" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="366" y="302" font-size="15.5" font-weight="600" fill="#e2e8f0">MediaMTX — RTSP broker</text>
+    <text x="366" y="326" font-size="13" fill="#94a3b8">Ingests audio streams from vehicle mic</text>
+    <text x="366" y="346" font-size="13" fill="#94a3b8">local network only</text>
+    <text x="366" y="372" font-size="12.5" fill="#4ade80">12 MB RAM · 0.1% CPU</text>
+
+    <rect x="350" y="412" width="360" height="140" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="366" y="442" font-size="15.5" font-weight="600" fill="#e2e8f0">AutoChart — Whisper.cpp STT</text>
+    <text x="366" y="466" font-size="13" fill="#94a3b8">Medical prompt bias · dictionary correction</text>
+    <text x="366" y="486" font-size="13" fill="#94a3b8">noise filtering · 30 s chunking</text>
+    <text x="366" y="512" font-size="12.5" fill="#4ade80">27 MB RAM · ~14 s / 30 s chunk</text>
+    <text x="366" y="532" font-size="12.5" fill="#4ade80">on-device — audio never leaves the vehicle</text>
+  </g>
+
+  <!-- PC box -->
+  <g>
+    <rect x="850" y="150" width="420" height="470" rx="14" fill="#13202e" stroke="#0d9488" stroke-width="1.5"/>
+    <text x="1060" y="188" font-size="19" font-weight="700" fill="#2dd4bf" text-anchor="middle">EDGE PC — INTELLIGENCE</text>
+    <text x="1060" y="211" font-size="13" fill="#94a3b8" text-anchor="middle">Ryzen 7 · 16 threads · 30 GB RAM · Ubuntu</text>
+
+    <rect x="880" y="235" width="360" height="118" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="896" y="264" font-size="15.5" font-weight="600" fill="#e2e8f0">Dashboard Server — aiohttp :5555</text>
+    <text x="896" y="287" font-size="13" fill="#94a3b8">Encounter state machine · keyword alerts</text>
+    <text x="896" y="307" font-size="13" fill="#94a3b8">diarization · SSE push · SQLite persistence</text>
+    <text x="896" y="333" font-size="12.5" fill="#4ade80">REST + SSE — all served locally</text>
+
+    <rect x="880" y="370" width="360" height="118" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="896" y="399" font-size="15.5" font-weight="600" fill="#e2e8f0">MedGemma 4B — Ollama :11434</text>
+    <text x="896" y="422" font-size="13" fill="#94a3b8">17-task EMS pipeline · SOAP / PCR / handoff</text>
+    <text x="896" y="442" font-size="13" fill="#94a3b8">live per-chunk analysis · clinical AI chat</text>
+    <text x="896" y="468" font-size="12.5" fill="#4ade80">~10 s live chunk · ~4 min full pipeline</text>
+
+    <rect x="880" y="505" width="360" height="82" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="896" y="534" font-size="15.5" font-weight="600" fill="#e2e8f0">Clinical Dashboard UI</text>
+    <text x="896" y="557" font-size="13" fill="#94a3b8">Live monitor · pipeline · PCR · ED handoff · AI chat</text>
+  </g>
+
+  <!-- Output -->
+  <g>
+    <rect x="1350" y="330" width="150" height="110" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="1425" y="368" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle">Clinician</text>
+    <text x="1425" y="390" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle">Browser</text>
+    <text x="1425" y="414" font-size="12.5" fill="#94a3b8" text-anchor="middle">live SSE updates</text>
+  </g>
+
+  <!-- Flows -->
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <path d="M 240 375 L 316 375" marker-end="url(#arrow)"/>
+  </g>
+  <g stroke="#2563eb" stroke-width="2.5" fill="none">
+    <path d="M 710 482 C 795 482 795 294 876 294" marker-end="url(#arrowBlue)"/>
+  </g>
+  <text x="787" y="410" font-size="12.5" fill="#60a5fa" text-anchor="middle">POST transcripts</text>
+  <text x="787" y="430" font-size="12.5" fill="#60a5fa" text-anchor="middle">(local LAN)</text>
+  <g stroke="#0d9488" stroke-width="2.5" fill="none">
+    <path d="M 1270 385 L 1346 385" marker-end="url(#arrow)"/>
+  </g>
+
+</svg>
